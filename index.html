@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>UX/UI Словарь — термины дизайна</title>
+  <meta name="description" content="Словарь терминов UX/UI дизайна: типы компаний, роли и специализации, процессы, артефакты и понятия." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'></text></svg>" />
+</head>
+<body>
+  <!-- Фоновая графика -->
+  <div class="aurora" aria-hidden="true">
+    <span class="blob blob--1"></span>
+    <span class="blob blob--2"></span>
+    <span class="blob blob--3"></span>
+    <span class="grid-overlay"></span>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="UX/UI Словарь — на главную">
+      <span class="brand__mark" aria-hidden="true">◐</span>
+      <span class="brand__text">
+        <b>UX/UI</b>
+        <span>Словарь</span>
+      </span>
+    </a>
+    <div class="topbar__actions">
+      <span class="counter" id="counter" aria-live="polite">—</span>
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Переключить тему" title="Сменить тему">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <!-- ======================= HERO ======================= -->
+    <section class="hero">
+      <p class="eyebrow"><span class="dot"></span> Термины, которые каждый дизайнер должен знать</p>
+      <h1 class="hero__title">Словарь <span class="grad">UX/UI</span> дизайна</h1>
+      <p class="hero__sub">
+        Компании, роли, процессы и артефакты — с короткими определениями
+        на русском и английском.
+      </p>
+
+      <!-- ======================= ПОИСК ======================= -->
+      <div class="search-wrap">
+        <div class="search" id="searchBox">
+          <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+          <input
+            id="searchInput"
+            class="search__input"
+            type="search"
+            placeholder="Поиск по терминам: empathy, вайрфрейм, прототип…"
+            autocomplete="off"
+            spellcheck="false"
+            aria-label="Поиск по словарю"
+            aria-expanded="false"
+            aria-controls="searchResults"
+            role="combobox"
+          />
+          <kbd class="search__kbd" id="searchKbd">/</kbd>
+          <button class="search__clear" id="searchClear" type="button" aria-label="Очистить поиск" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </button>
+        </div>
+        <div class="search-results" id="searchResults" role="listbox" aria-label="Результаты поиска" hidden></div>
+      </div>
+
+      <!-- ======================= ВКЛАДКИ ======================= -->
+      <div class="tabs-wrap">
+        <div class="tabs" role="tablist" aria-label="Разделы словаря">
+          <span class="tabs__pill" id="tabsPill" aria-hidden="true"></span>
+          <button class="tab is-active" role="tab" id="tab-ru" aria-selected="true" aria-controls="panel-ru" data-panel="ru" type="button">
+            По-русски
+          </button>
+          <button class="tab" role="tab" id="tab-en" aria-selected="false" aria-controls="panel-en" data-panel="en" type="button" tabindex="-1">
+            In English
+          </button>
+          <button class="tab" role="tab" id="tab-sections" aria-selected="false" aria-controls="panel-sections" data-panel="sections" type="button" tabindex="-1">
+            По разделам
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= ПАНЕЛИ ======================= -->
+    <section class="panels">
+      <!-- Вкладка 1: по-русски -->
+      <div class="panel is-active" id="panel-ru" role="tabpanel" aria-labelledby="tab-ru" tabindex="0"></div>
+      <!-- Вкладка 2: english -->
+      <div class="panel" id="panel-en" role="tabpanel" aria-labelledby="tab-en" tabindex="0" hidden></div>
+      <!-- Вкладка 3: по разделам -->
+      <div class="panel" id="panel-sections" role="tabpanel" aria-labelledby="tab-sections" tabindex="0" hidden></div>
+    </section>
+
+    <footer class="footer">
+      <p>Словарь UX/UI · <span id="footerCount">0</span> терминов · данные можно дополнять в <code>data.js</code></p>
+    </footer>
+  </main>
+
+  <!-- ======================= МОДАЛКА ======================= -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle" id="modalDialog">
+      <button class="modal__close" type="button" data-close aria-label="Закрыть">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <div class="modal__body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
